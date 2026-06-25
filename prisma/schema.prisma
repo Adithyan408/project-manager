@@ -10,7 +10,6 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
 }
 
 enum TaskStatus{
@@ -19,7 +18,7 @@ enum TaskStatus{
   DONE
 }
 
-model USER {
+model User {
   id            String  @id @db.VarChar(36)
   fullName      String  @db.VarChar(100)
   email         String  @unique
@@ -40,7 +39,7 @@ model Project{
   title       String
 
   userId  String
-  user    User @relation(fields: [userId], reference: [id], onDelete: Cascade)
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   tasks   Task[]
   
@@ -57,10 +56,10 @@ model Task {
   dueDate     DateTime?
 
   userId      String
-  user  User @relation(fields:[userId], reference:[id], onDelete: Cascade)
+  user  User @relation(fields:[userId], references:[id], onDelete: Cascade)
 
   projectId   String
-  project     Project @relation(fields: [projectId], reference: [id], onDelete: Cascade)
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
