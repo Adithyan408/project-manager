@@ -16,7 +16,7 @@ export class PrismaProjectRepository implements ProjectRepository {
         })
     }
 
-    async findBy(userId: string, id: string): Promise<Project | null> {
+    async findById(userId: string, id: string): Promise<Project | null> {
         const project = await prismaClient.project.findFirst({
             where: {id, userId},
         });
