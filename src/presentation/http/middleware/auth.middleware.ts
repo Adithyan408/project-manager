@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
-import type { TokenService } from "../../../application/ports/token.port.js";
+import type { ITokenService } from "../../../application/ports/token.port.js";
 import { UnauthorizedException } from "../errors/unauthorized.exception.js";
 
 
-export const authenticate = (tokenService: TokenService) => {
+export const authenticate = (tokenService: ITokenService) => {
   return (request: Request, _response: Response, next: NextFunction): void => {
     const authHeader = request.headers.authorization;
 

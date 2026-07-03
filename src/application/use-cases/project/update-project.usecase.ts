@@ -1,13 +1,13 @@
 import type { ProjectDTO } from "../../../domain/entities/project.entity.js";
-import type { ProjectRepository } from "../../../domain/repositories/project.repository.js";
+import type { IProjectRepository } from "../../../domain/repositories/project.repository.js";
 import type { UpdateProjectDto } from "../../dtos/project/update-project.dto.js";
 import { ProjectNotFoundException } from "../../errors/project/project-not-found.exception.js";
-import type { Logger } from "../../ports/logger.port.js";
+import type { ILogger } from "../../ports/logger.port.js";
 
 export class UpdateProjectUseCase {
     constructor(
-        private readonly projectRepository: ProjectRepository,
-        private readonly logger: Logger
+        private readonly projectRepository: IProjectRepository,
+        private readonly logger: ILogger
     ) {}
 
     async execute(userId: string, projectId: string, input: UpdateProjectDto): Promise<ProjectDTO> {

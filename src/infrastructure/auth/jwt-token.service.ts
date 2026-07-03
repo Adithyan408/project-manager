@@ -1,9 +1,9 @@
-import type { TokenService } from "../../application/ports/token.port.js";
+import type { ITokenService } from "../../application/ports/token.port.js";
 import type { AuthTokenPayload } from "../../application/types/auth-token-payload.js";
 import { env } from "../../config/env.config.js";
 import jwt from "jsonwebtoken";
 
-export class jwtTokenService implements TokenService {
+export class jwtTokenService implements ITokenService {
     generate(payload: AuthTokenPayload): string {
         const expiresIn = env.JWT_EXPIRES_IN as NonNullable < 
         jwt.SignOptions["expiresIn"] >

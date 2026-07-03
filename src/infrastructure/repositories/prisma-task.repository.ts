@@ -1,10 +1,10 @@
 import { Task } from "../../domain/entities/task.entity.js";
-import type { TaskRepository } from "../../domain/repositories/task.repository.js";
+import type { ITaskRepository } from "../../domain/repositories/task.repository.js";
 import { PrismaClient } from "@prisma/client";
 import { TaskMapper } from "../mappers/task.mapper.js";
 import { prismaClient } from "../database/prisma.clients.js";
 
-export class PrismaTaskRepository implements TaskRepository{
+export class PrismaTaskRepository implements ITaskRepository{
     async save(entity: Task): Promise<void> {
         await prismaClient.task.upsert({
             where: {id: entity.id},
@@ -28,7 +28,7 @@ export class PrismaTaskRepository implements TaskRepository{
             where: {userId, projectId },
             orderBy: {createdAt: "desc"},
         });
-        return TaskSignal.map(TaskMapper.toDoaminTask);
+        return tasks.map(TaskMapper.toDoaminTask);
     }
 
     async delete(userId: string, id: string): Promise<void> {

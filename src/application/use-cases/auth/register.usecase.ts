@@ -1,15 +1,15 @@
 import type { RegisterDto } from "../../dtos/auth/login.dto.js";
 import { UserExistsException } from "../../errors/auth/user-exists.exception.js";
-import type { Logger } from "../../ports/logger.port.js";
-import type { PasswordHasher } from "../../ports/password-hasher.port.js";
+import type { ILogger } from "../../ports/logger.port.js";
+import type { IPasswordHasher } from "../../ports/password-hasher.port.js";
 import { User, type UserDTO } from "../../../domain/entities/user.entity.js";
-import type { UserRepository } from "../../../domain/repositories/user.repository.js";
+import type { IUserRepository } from "../../../domain/repositories/user.repository.js";
 
 export class RegisterUseCase {
     constructor(
-        private readonly userRepository: UserRepository,
-        private readonly passwordHasher: PasswordHasher,
-        private readonly logger: Logger
+        private readonly userRepository: IUserRepository,
+        private readonly passwordHasher: IPasswordHasher,
+        private readonly logger: ILogger
     ) {}
 
     private async ensureUserDoesNotExist(email: string): Promise<void> {

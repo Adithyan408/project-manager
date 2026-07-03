@@ -1,4 +1,4 @@
-import type { TokenService } from "../../../application/ports/token.port.js";
+import type { ITokenService } from "../../../application/ports/token.port.js";
 import { TaskController } from "../controller/task.controller.js";
 import { authenticate } from "../middleware/auth.middleware.js";
 import { Router } from "express";
@@ -6,7 +6,7 @@ import { Router } from "express";
 
 export const createTaskRouter = (
   taskController: TaskController,
-  tokenService: TokenService
+  tokenService: ITokenService
 ) => {
   const router = Router();
 

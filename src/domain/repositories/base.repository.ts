@@ -1,4 +1,4 @@
-export interface BaseRepository<TEntity>{
+export interface IBaseRepository<TEntity>{
     save(entity: TEntity): void;
 
     findById(userId: string, id: string): Promise<TEntity | null>;

@@ -1,4 +1,4 @@
-import type { Logger } from "../../application/ports/logger.port.js";
+import type { ILogger } from "../../application/ports/logger.port.js";
 import { env } from "../../config/env.config.js";
 import pino, { destination } from "pino";
 
@@ -42,7 +42,7 @@ export const pinoLogger = pino({
     }
 })
 
-export class PinoLogger implements Logger{
+export class PinoLogger implements ILogger{
     info(message: string, meta?: object): void {
         pinoLogger.info(meta, message)
         

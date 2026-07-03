@@ -1,13 +1,13 @@
 import type { CreateProjectDto } from "../../dtos/project/create-project.dto.js";
-import type { Logger } from "../../ports/logger.port.js";
+import type { ILogger } from "../../ports/logger.port.js";
 import { Project, type ProjectDTO } from "../../../domain/entities/project.entity.js";
-import type { ProjectRepository } from "../../../domain/repositories/project.repository.js";
+import type { IProjectRepository } from "../../../domain/repositories/project.repository.js";
 
 
 export class CreateProjectUseCase {
     constructor(
-        private readonly projectRepository: ProjectRepository,
-        private readonly logger: Logger
+        private readonly projectRepository: IProjectRepository,
+        private readonly logger: ILogger
     ) {}
 
     async execute(input: CreateProjectDto, userId: string): Promise<ProjectDTO> {

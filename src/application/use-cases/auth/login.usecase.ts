@@ -1,18 +1,18 @@
 import type { LoginDto } from "../../dtos/auth/register.dto.js";
 import { InvalidCredentialsException } from "../../errors/auth/invalid-credentials.exception.js";
-import type { Logger } from "../../ports/logger.port.js";
-import type { PasswordHasher } from "../../ports/password-hasher.port.js";
-import type { TokenService } from "../../ports/token.port.js";
+import type { ILogger } from "../../ports/logger.port.js";
+import type { IPasswordHasher } from "../../ports/password-hasher.port.js";
+import type { ITokenService } from "../../ports/token.port.js";
 import type { User } from "../../../domain/entities/user.entity.js";
-import type { UserRepository } from "../../../domain/repositories/user.repository.js";
+import type { IUserRepository } from "../../../domain/repositories/user.repository.js";
 
 
 export class LoginUseCase {
     constructor(
-        private readonly userRepository: UserRepository,
-        private readonly passwordHasher: PasswordHasher,
-        private readonly tokenService: TokenService,
-        private readonly logger: Logger,
+        private readonly userRepository: IUserRepository,
+        private readonly passwordHasher: IPasswordHasher,
+        private readonly tokenService: ITokenService,
+        private readonly logger: ILogger,
     ) {}
 
     private async getUserOrFail(email: string): Promise<User> {

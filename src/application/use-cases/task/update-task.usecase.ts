@@ -1,14 +1,14 @@
 import type { TaskDTO } from "../../../domain/entities/task.entity.js";
-import type { TaskRepository } from "../../../domain/repositories/task.repository.js";
+import type { ITaskRepository } from "../../../domain/repositories/task.repository.js";
 import { TaskStatus } from "../../../domain/value-objects/task-status.js";
 import type { UpdateTaskDto } from "../../dtos/task/update-task.dto.js";
 import { TaskNotFoundException } from "../../errors/task/task-not-found.exception.js";
-import type { Logger } from "../../ports/logger.port.js";
+import type { ILogger } from "../../ports/logger.port.js";
 
 export class UpdateTaskUseCase {
     constructor(
-        private readonly taskRepository: TaskRepository,
-        private readonly logger: Logger
+        private readonly taskRepository: ITaskRepository,
+        private readonly logger: ILogger
     ) {}
 
     async execute(userId: string, taskId: string, input: UpdateTaskDto): Promise<TaskDTO> {

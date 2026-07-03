@@ -1,11 +1,11 @@
 import { Router } from "express";
 import type { AuthController } from "../controller/auth.controller.js";
-import type { TokenService } from "../../../application/ports/token.port.js";
+import type { ITokenService } from "../../../application/ports/token.port.js";
 import { authenticate } from "../middleware/auth.middleware.js";
 
 export const createAuthRouter = (
   authController: AuthController,
-  tokenService: TokenService
+  tokenService: ITokenService
 ) => {
   const router = Router();
 

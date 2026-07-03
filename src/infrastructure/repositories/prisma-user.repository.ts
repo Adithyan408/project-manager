@@ -1,5 +1,5 @@
 import { User } from "../../domain/entities/user.entity.js";
-import type { UserRepository } from "../../domain/repositories/user.repository.js";
+import type { IUserRepository } from "../../domain/repositories/user.repository.js";
 import { Prisma } from "@prisma/client";
 import { prismaClient } from "../database/prisma.clients.js";
 
@@ -26,7 +26,7 @@ const toPersistence = (user: User) : Prisma.UserUncheckedCreateInput => ({
     updatedAt: user.updatedAt
 });
 
-export class PrismaUserRepository implements UserRepository {
+export class PrismaUserRepository implements IUserRepository {
     async save(user: User): Promise<void> {
         await prismaClient.user.upsert({
             where: {id: user.id},

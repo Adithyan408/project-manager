@@ -1,5 +1,5 @@
 import { Router } from "express";
-import type { TokenService } from "../../../application/ports/token.port.js";
+import type { ITokenService } from "../../../application/ports/token.port.js";
 import { authenticate } from "../middleware/auth.middleware.js";
 import { ProjectController } from "../controller/project.controller.js";
 import type { TaskController } from "../controller/task.controller.js";
@@ -7,7 +7,7 @@ import type { TaskController } from "../controller/task.controller.js";
 export const createProjectRouter = (
   projectController: ProjectController,
   taskController: TaskController,
-  tokenService: TokenService
+  tokenService: ITokenService
 ) => {
   const router = Router();
 

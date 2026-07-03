@@ -1,7 +1,7 @@
-import type { PasswordHasher } from "../../application/ports/password-hasher.port.ts";
+import type { IPasswordHasher } from "../../application/ports/password-hasher.port.ts";
 import bcrypt from "bcrypt";
 
-export class PasswordHashService implements PasswordHasher{
+export class PasswordHashService implements IPasswordHasher{
     async hash(password: string): Promise <string> {
         return bcrypt.hash(password, 10)
     }
